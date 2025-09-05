@@ -78,17 +78,26 @@ const Homepage = () => {
               Detect tampering, validate authenticity, and ensure document integrity with blockchain-secured reports.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/upload">
-                <Button size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground px-8 py-3 text-lg">
-                  <Upload className="w-5 h-5 mr-2" />
-                  Upload Document
-                </Button>
-              </Link>
-              <Link to="/how-it-works">
-                <Button variant="outline" size="lg" className="px-8 py-3 text-lg">
-                  Learn More
-                </Button>
-              </Link>
+              <div 
+                className="upload-zone cursor-pointer hover:border-primary hover:bg-primary/5"
+                onClick={() => document.getElementById('hero-file-input')?.click()}
+              >
+                <input
+                  id="hero-file-input"
+                  type="file"
+                  className="hidden"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  onChange={(e) => {
+                    if (e.target.files?.[0]) {
+                      // Navigate to upload page with file
+                      window.location.href = '/upload';
+                    }
+                  }}
+                />
+                <Upload className="w-8 h-8 mx-auto mb-3 text-primary" />
+                <p className="font-semibold text-primary mb-1">Upload Document</p>
+                <p className="text-sm text-muted-foreground">Drag & drop or click to browse</p>
+              </div>
             </div>
           </div>
         </div>
